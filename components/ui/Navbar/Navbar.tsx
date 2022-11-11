@@ -31,6 +31,15 @@ const Navbar = () => {
               <Link href="/account">
                 <a className={s.link}>Account</a>
               </Link>
+              <Link href="/zuststoretest1">
+                <a className={s.link}>ZustStore1</a>
+              </Link>
+              <Link href="/zuststoretest2">
+                <a className={s.link}>ZustStore2</a>
+              </Link>
+              <Link href="/dashboardofteacher">
+                <a className={s.link}>DashboardOfTeacher</a>
+              </Link>
             </nav>
           </div>
 
