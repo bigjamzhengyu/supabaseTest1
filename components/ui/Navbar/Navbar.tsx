@@ -40,6 +40,12 @@ const Navbar = () => {
               <Link href="/dashboardofteacher">
                 <a className={s.link}>DashboardOfTeacher</a>
               </Link>
+              <Link href="/todoshowpage">
+                <a className={s.link}>TodoShowPage</a>
+              </Link>
+              <Link href="/showprofile">
+                <a className={s.link}>ShowProfile</a>
+              </Link>
             </nav>
           </div>
 

@@ -68,3 +68,11 @@ export interface Subscription {
   trial_end?: string;
   prices?: Price;
 }
+
+export interface Todo {
+  id: string /* primary key */;
+  user_id: string;
+  created_at: string;
+  task?:string;
+  is_complete:boolean;
+}
