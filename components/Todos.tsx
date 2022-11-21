@@ -8,7 +8,6 @@ import type { Database } from 'types_db';
 import { Todo } from 'types';
 
 export const supabase = createBrowserSupabaseClient<Database>();
-//export type MyTodo = Todo & undefined;
 
 export default function Todos({ user }: { user: User }) {
   const [todos, setTodos] = useState<any[]|undefined>([]);

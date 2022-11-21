@@ -214,6 +214,45 @@ export interface Database {
           trial_end?: string | null;
         };
       };
+      profiles: {
+        Row: {
+          id: string
+          updated_at: string | null
+          username: string | null
+          full_name: string | null
+          avatar_url: string | null
+          website: string | null
+        }
+        Insert: {
+          id: string
+          updated_at?: string | null
+          username?: string | null
+          full_name?: string | null
+          avatar_url?: string | null
+          website?: string | null
+        }
+        Update: {
+          id?: string
+          updated_at?: string | null
+          username?: string | null
+          full_name?: string | null
+          avatar_url?: string | null
+          website?: string | null
+        }
+      };
+      wordcardjp: {
+        Row: {
+          id: string
+          type: string
+          wordjp: string
+          descjp: string | null
+          desc1: string | null
+          desc2: string | null
+          desc3: string | null
+          descj4: string | null
+          desc5: string | null
+        }
+      };
     };
     Views: {
       [_ in never]: never;

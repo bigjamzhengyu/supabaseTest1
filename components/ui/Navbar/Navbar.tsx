@@ -46,6 +46,9 @@ const Navbar = () => {
               <Link href="/showprofile">
                 <a className={s.link}>ShowProfile</a>
               </Link>
+              <Link href="/cardtest1">
+                <a className={s.link}>CardTest1</a>
+              </Link>
             </nav>
           </div>
 

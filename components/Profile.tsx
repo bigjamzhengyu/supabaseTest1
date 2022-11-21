@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useUser, useSupabaseClient, Session } from '@supabase/auth-helpers-react'
 import Avatar from './Avatar'
-
-import { Database } from '../utils/database.types'
+import { Database } from '../types_db'
 type Profiles = Database['public']['Tables']['profiles']['Row']
 
 export default function Profile({ session }: { session: Session }) {
@@ -90,12 +89,13 @@ export default function Profile({ session }: { session: Session }) {
       />
       <div>
         <label htmlFor="email">Email</label>
-        <input id="email" type="text" value={session.user.email} disabled />
+        <input id="email" className="ml-2 text-blue-400" type="text" value={session.user.email} disabled />
       </div>
       <div>
         <label htmlFor="username">Username</label>
         <input
           id="username"
+          className="ml-2 text-blue-400"
           type="text"
           value={username || ''}
           onChange={(e) => setUsername(e.target.value)}
@@ -105,6 +105,7 @@ export default function Profile({ session }: { session: Session }) {
         <label htmlFor="website">Website</label>
         <input
           id="website"
+          className="ml-2 text-blue-400"
           type="website"
           value={website || ''}
           onChange={(e) => setWebsite(e.target.value)}
@@ -113,7 +114,7 @@ export default function Profile({ session }: { session: Session }) {
 
       <div>
         <button
-          className="button primary block"
+          className="border-solid border-2 border-orange-500"
           onClick={() => updateProfile({ username, website, avatar_url })}
           disabled={loading}
         >
