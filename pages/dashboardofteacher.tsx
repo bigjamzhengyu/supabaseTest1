@@ -1,49 +1,6 @@
-import cn from 'classnames';
-import { useRouter } from 'next/router';
-import { useState } from 'react';
+import WordCard2 from "@/components/WordCard2";
 
-import Button from 'components/ui/Button';
-import { postData } from 'utils/helpers';
-import { getStripe } from 'utils/stripe-client';
-import { useUser } from 'utils/useUser';
-import { Price, ProductWithPrice } from 'types';
-
-interface Props {
-  products: ProductWithPrice[];
-}
-
-type BillingInterval = 'year' | 'month';
-
-export default function DashBoardOfTeacher({ products }: Props) {
-  const router = useRouter();
-  const [billingInterval, setBillingInterval] =
-    useState<BillingInterval>('month');
-  const [priceIdLoading, setPriceIdLoading] = useState<string>();
-  const { user, isLoading, subscription } = useUser();
-
-  const handleCheckout = async (price: Price) => {
-    setPriceIdLoading(price.id);
-    if (!user) {
-      return router.push('/signin');
-    }
-    if (subscription) {
-      return router.push('/account');
-    }
-
-    try {
-      const { sessionId } = await postData({
-        url: '/api/create-checkout-session',
-        data: { price }
-      });
-
-      const stripe = await getStripe();
-      stripe?.redirectToCheckout({ sessionId });
-    } catch (error) {
-      return alert((error as Error)?.message);
-    } finally {
-      setPriceIdLoading(undefined);
-    }
-  };
+export default function DashBoardOfTeacher() {
 
   return (
     <section className="bg-black">
@@ -55,83 +12,84 @@ export default function DashBoardOfTeacher({ products }: Props) {
           <p className="mt-5 text-xl text-zinc-200 sm:text-center sm:text-2xl max-w-2xl m-auto">
             Some words to give the message.
           </p>
-          <div className="relative self-center mt-6 bg-zinc-900 rounded-lg p-0.5 flex sm:mt-8 border border-zinc-800">
-            <button
-              onClick={() => setBillingInterval('month')}
-              type="button"
-              className={`${
-                billingInterval === 'month'
-                  ? 'relative w-1/2 bg-zinc-700 border-zinc-800 shadow-sm text-white'
-                  : 'ml-0.5 relative w-1/2 border border-transparent text-zinc-400'
-              } rounded-md m-1 py-2 text-sm font-medium whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-opacity-50 focus:z-10 sm:w-auto sm:px-8`}
-            >
-              Monthly billing
-            </button>
-            <button
-              onClick={() => setBillingInterval('year')}
-              type="button"
-              className={`${
-                billingInterval === 'year'
-                  ? 'relative w-1/2 bg-zinc-700 border-zinc-800 shadow-sm text-white'
-                  : 'ml-0.5 relative w-1/2 border border-transparent text-zinc-400'
-              } rounded-md m-1 py-2 text-sm font-medium whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-opacity-50 focus:z-10 sm:w-auto sm:px-8`}
-            >
-              Yearly billing
-            </button>
-          </div>
         </div>
-        <div>
-          <p className="mt-24 text-xs uppercase text-zinc-400 text-center font-bold tracking-[0.3em]">
-            Brought to you by
-          </p>
-          <div className="flex flex-col items-center my-12 space-y-4 sm:mt-8 sm:space-y-0 md:mx-auto md:max-w-2xl sm:grid sm:gap-6 sm:grid-cols-5">
-            <div className="flex items-center justify-start">
-              <a href="https://nextjs.org" aria-label="Next.js Link">
-                <img
-                  src="/nextjs.svg"
-                  alt="Next.js Logo"
-                  className="h-12 text-white"
-                />
-              </a>
-            </div>
-            <div className="flex items-center justify-start">
-              <a href="https://vercel.com" aria-label="Vercel.com Link">
-                <img
-                  src="/vercel.svg"
-                  alt="Vercel.com Logo"
-                  className="h-6 text-white"
-                />
-              </a>
-            </div>
-            <div className="flex items-center justify-start">
-              <a href="https://stripe.com" aria-label="stripe.com Link">
-                <img
-                  src="/stripe.svg"
-                  alt="stripe.com Logo"
-                  className="h-12 text-white"
-                />
-              </a>
-            </div>
-            <div className="flex items-center justify-start">
-              <a href="https://supabase.io" aria-label="supabase.io Link">
-                <img
-                  src="/supabase.svg"
-                  alt="supabase.io Logo"
-                  className="h-10 text-white"
-                />
-              </a>
-            </div>
-            <div className="flex items-center justify-start">
-              <a href="https://github.com" aria-label="github.com Link">
-                <img
-                  src="/github.svg"
-                  alt="github.com Logo"
-                  className="h-8 text-white"
-                />
-              </a>
+        <div className="min-h-screen flex justify-center items-center flex-wrap">
+          <div className="bg-gradient-to-r from-blue-500 to-blue-300
+                          w-96 h-56 m-auto bg-blue-500 rounded-xl shadow-2xl 
+                          transform hover:scale-110 transition-transform">
+            <div className="w-full px-8 absolute top-6">
+              <div className="flex justify-between">
+                <div>
+                  <p className="font-light">Teacher Name</p>
+                  <p className="text-lg font-medium tracking-widest">
+                    Tokyo 太郎
+                  </p>
+                </div>
+                <div>
+                  画像
+                </div>
+              </div>
+              <div className="pt-2">
+                <p className="font-light">Subject</p>
+                <p className="text-lg font-medium tracking-widest">
+                  Language（Japanese、English）
+                </p>
+              </div>
+              <div className="pt-6 pr-6">
+                <div className="flex justify-between">
+                  <div>
+                    <p className="font-light text-xs">
+                      Date
+                    </p>
+                    <p className="font-bold tracking-more-wider text-sm">
+                      2021-03-16
+                    </p>
+                  </div>
+                  <div>
+                    <p className="font-light text-xs">
+                      Class No.
+                    </p>
+                    <p className="font-bold tracking-more-wider text-sm">
+                      20
+                    </p>
+                  </div>
+                  <div>
+                    <p className="font-light text-xs">
+                      Status
+                    </p>
+                    <p className="font-bold tracking-more-wider text-sm">
+                      Online
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
+          <div className="bg-gradient-to-r from-blue-500 to-blue-300
+                          w-96 h-56 m-auto bg-blue-500 rounded-xl shadow-2xl 
+                          transform hover:scale-110 transition-transform">
+            <div className="w-full px-8 absolute top-6">
+              
+            </div>
+          </div>
+          <div className="bg-gradient-to-r from-blue-500 to-blue-300
+                          w-96 h-56 m-auto bg-blue-500 rounded-xl shadow-2xl 
+                          transform hover:scale-110 transition-transform">
+            <div className="w-full px-8 absolute top-6">
+              
+            </div>
+          </div>
+          <div className="bg-gradient-to-r from-blue-500 to-blue-300
+                          w-96 h-56 m-auto bg-blue-500 rounded-xl shadow-2xl 
+                          transform hover:scale-110 transition-transform">
+            <div className="w-full px-8 absolute top-6">
+              
+            </div>
+          </div>
         </div>
+      </div>
+      <div>
+        <WordCard2 />
       </div>
     </section>
   );

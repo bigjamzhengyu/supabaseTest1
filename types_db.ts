@@ -253,6 +253,22 @@ export interface Database {
           desc5: string | null
         }
       };
+      database3000: {
+        Row: {
+          id: string
+          english: string
+          japanese: string | null
+          chinese: string | null
+        }
+      };
+      wordlist: {
+        Row: {
+          id: string
+          userid: string
+          type: string | null
+          wordid: string | null
+        }
+      };
     };
     Views: {
       [_ in never]: never;

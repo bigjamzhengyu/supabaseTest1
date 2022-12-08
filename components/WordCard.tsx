@@ -41,7 +41,7 @@ export default function WordCard({wordcard}: {wordcard:WordCardJP}) {
   }
 
   return(
-    <p className="mt-5 text-xl text-zinc-200 sm:text-center sm:text-2xl max-w-2xl m-auto">
+    <div className="mt-5 text-xl text-zinc-200 sm:text-center sm:text-2xl max-w-2xl m-auto">
       <div className="mt-12 space-y-4 sm:mt-16 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-6">
         <div className='rounded-lg shadow-sm divide-y divide-zinc-600 bg-zinc-900'>
           <h2 className="text-2xl leading-6 font-semibold text-white">
@@ -85,7 +85,7 @@ export default function WordCard({wordcard}: {wordcard:WordCardJP}) {
           </div>
         </div>
       </div>
-    </p>
+    </div>
   );
 }
 
