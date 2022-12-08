@@ -31,15 +31,22 @@ export default function CardTest2() {
     if(mod === 0) {
       setMod(1);
       let { data: words, error } = await supabase.from('database3000').select('*, wordlist(*)')
+      .eq('wordlist.userid',session.user.id)
       .order('id', { ascending: true });
       if (error) 
         console.log('error', error);
       else {
         const list = [];
-        for(const word in words as Array<object>){
-          console.log(word);
+        if(words){
+          for(let i = 0; i < words?.length; i++){
+            //console.log(words[i]);
+            if(words[i].wordlist.length > 0){
+              list.push(words[i]);
+            }
+          }
         }
-        //setwordCards(words as any[]|undefined);
+        console.log(list);
+        setwordCards(list as any[]|undefined);
       }
     } else {
       setMod(0);
